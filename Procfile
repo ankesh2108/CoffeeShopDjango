@@ -1,0 +1,1 @@
+web: gunicorn chaikatta.wsgi --log-file -

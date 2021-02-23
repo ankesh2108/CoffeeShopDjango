@@ -1,0 +1,46 @@
+{% extends 'base.html'%}
+{% load static%}
+{% load cart%}
+{% load custom_filter%}
+{% block content%}
+<div class="container p-4 mt-4 mx-4 shadow" style="background: rgba(255,255,255,0.6); backdrop-filter: blur(3px);" >
+    <div class="row">
+        {% for p in product%}
+        <div class="col-md-3 m-4 rounded-circle shadow  " style="object-fit: cover;" >
+            <img class="img-fluid" src="{{p.img.url}}" alt="">
+        </div>
+        <div class=" border-start col-md-8 m-4    " >
+            <h1>{{p.name}}</h1>
+            <h4>{{p.description}}</h4>
+            <h1>{{p.price|currency}}</h1>
+            {% if p|is_in_cart:request.session.cart%}
+            <div class="row no gutters col-6 ">
+
+                <form action="/product?product={{p.id}}" method="post" class="col-2">
+                 {% csrf_token %}
+                 <input hidden type="text" name="product" value="{{p.id}}">
+                    <input hidden type="text" name="remove" value="True">
+                 <input type="submit" value="-" class="btn btn-block btn-secondary"/>
+               </form>
+            <div class="col text-center" style="font-weight: 600;">{{p|cart_quantity:request.session.cart}}  in  cart</div>
+             <form action="/product?product={{p.id}}" method="post" class="col-2">
+                 {% csrf_token %}
+                 <input hidden type="text" name="product" value="{{p.id}}">
+                 <input type="submit" value="+" class="btn btn-block btn-secondary"/>
+             </form>
+
+            </div>
+            {%else%}
+            <form action="/product?product={{p.id}}" method="POST">
+                {% csrf_token%}
+                <input style="visibility: hidden;" name="product" type="text" value="{{p.id}}"><br>
+                <input type="submit" class="btn " style="background-color: #017143; color: white; border-radius: 40px;" value="Add Order">
+            </form>
+            {%endif%}
+        </div>
+        {%endfor%}
+        
+    </div>
+    
+</div>
+{%endblock%}

@@ -1,0 +1,34 @@
+{% extends 'base.html'%}
+
+
+{%block content%}
+<div class="container p-2 mt-4">
+    <div class="p-2 m-2">
+        <div class="col-lg-3 mt-4 mx-auto border rounded p-4 shadow p-2 mb-5 bg-white rounded">
+            <div class="alert alert-success border rounded">Login Here</div>
+            {%if error%}
+            <div class="alert alert-danger border rounded">{{error}}</div>
+            {%endif%}
+            <form action="/login" method="POST">
+                {% csrf_token%}
+                
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <input type="email" name="email" id="" class="form-control" placeholder="example@gmail.com" aria-describedby="helpId">
+                    
+                </div>
+                <div class="form-group">
+                    <label for="">PassWord</label>
+                    <input type="password" name="password" id="" class="form-control" placeholder="********" aria-describedby="helpId">
+                    
+                </div>
+                <div class="form-group mt-3 ">
+                    <input class="btn btn-sm btn-info shadow p-2 mb-5 rounded" type="submit" value="Log In">
+                </div>
+            </form>
+        </div>
+    </div>
+   
+    
+</div>
+{%endblock%}

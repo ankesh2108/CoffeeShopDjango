@@ -1,0 +1,41 @@
+
+{% extends 'base.html'%}
+{% load static%}
+{%block content%}
+<div class="container ">
+    <div class="row content">
+        <div class="col-md-8  textbox">
+            <h2>it's not a just Coffee <br> it's a <span>Emotion</span></h2>
+            <p style="font-size: 2vw;" >Lorem, ius,eriam voluptatum a quisquam enim quibusdam,
+                suscipit nulla reiciendis.</p>
+            <a href="store">Buy Here</a>
+        </div>
+        <div class="col-md-4 imgbox img-fluid">
+            <img class="img-fluid starbuks" src="{% static 'images/img1.png'%}" alt="">
+        </div>
+        
+    </div><ul class="thumb">
+        <li><img  src=" {% static 'images/thumb1.png'%}" onclick="imgslider1('img1.png','#017143')"  alt=""></li>
+        <li><img  src=" {% static 'images/thumb2.png'%}" onclick="imgslider2('img2.png','#eb7495')" alt=""></li>
+        <li><img  src="{% static 'images/thumb3.png'%}"  onclick="imgslider3('img3.png','#d752b1')" alt=""></li>
+    </ul>
+</div>
+<script type="text/javascript">
+    function imgslider1(anyImg,col){
+        document.querySelector('.starbuks').src="{% static 'images/img1.png'%}";
+       const color= document.querySelector('.circle');
+       color.style.background=col;
+    }
+    function imgslider2(anyImg,col){
+        document.querySelector('.starbuks').src="{% static 'images/img2.png'%}";
+       const color= document.querySelector('.circle');
+       color.style.background=col;
+    }
+    function imgslider3(anyImg,col){
+        document.querySelector('.starbuks').src="{% static 'images/img3.png'%}";
+       const color= document.querySelector('.circle');
+       color.style.background=col;
+    }
+   </script>
+{% endblock%}
+

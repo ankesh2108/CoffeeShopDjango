@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+{% load static%}
+{% load cart%}
+{% block content%}
+<div class="container mt-5 ">
+    <div class="row mx-auto">
+
+        <div class="col-lg-3 border-end">
+            <a style="font-size: 3vw; text-decoration: none; color: black;" href="/store">Menu</a>
+
+            <ul style="list-style: none;">
+                {% for c in category%}
+                <a href="/store?category={{c.id}}" style="text-decoration: none ; color: black;">
+                    <li class="p-2" style="font-weight: 600; word-spacing:2px">{{c.category}}</li>
+                </a>
+                {%endfor%}
+            </ul>
+        </div>
+
+        <div class="col-lg-9 ">
+            <div class="row mx-auto ">
+                
+                {% for product in products%}
+                <div class="card mb-3 mx-auto shadow" style=" border: none;  max-width: 400px; background: rgba(255,255,255,0.6); backdrop-filter: blur(3px);">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <a href="/product?product={{product.id}}">
+                                <img src="{{product.img.url}}" class="card-img-top" alt="...">
+                            </a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <p class="card-title"><b>{{product.name}}</b></p>
+                                <p class="card-text">{{product.description}}</p>
+                                <p class="card-text"><b>{{product.price}}</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    {%endblock%}
